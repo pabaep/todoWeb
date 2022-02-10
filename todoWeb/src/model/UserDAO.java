@@ -2,6 +2,7 @@ package model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import model.DTO.UserDTO;
@@ -14,7 +15,6 @@ public class UserDAO {
 		try{
 			System.out.println("DAO");
 			con = DBUtil.getConnection();
-			System.out.println(con);
 			pstmt = con.prepareStatement("insert into userT values(seq_user_id.NEXTVAL, ?, ?, ?)");
 			pstmt.setString(1, user.getUserEmail());
 			pstmt.setString(2, user.getUserName());
@@ -30,4 +30,28 @@ public class UserDAO {
 		}
 		return false;
 	}
+	
+	public static UserDTO login(String userEmail, String userPw) throws SQLException{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		UserDTO user = null;
+		try{
+			System.out.println("DAO");
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("select userId, userEmail, userName from userT where userEmail=? and userPw=?");
+			pstmt.setString(1, userEmail);
+			pstmt.setString(2, userPw);
+			
+			rset = pstmt.executeQuery();
+			if(rset.next()){
+				user = new UserDTO(Integer.parseInt(rset.getString(1)), rset.getString(2), rset.getString(3));
+			}
+
+		}finally{
+			DBUtil.close(con, pstmt, rset);
+		}
+		return user;
+	}
+	
 }

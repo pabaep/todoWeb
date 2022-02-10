@@ -44,7 +44,25 @@ public class TodoController extends HttpServlet {
 	}
 	
 	public void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String url = "showError.jsp";
 		
+		String userEmail = request.getParameter("user_email");
+		String userPw = request.getParameter("user_pw");
+		try {
+			UserDTO user = TodoService.login(userEmail, userPw);
+			if(user != null) {
+				request.setAttribute("successMsg", "가입 완료");
+				request.setAttribute("user", user);
+				url = "form.html";
+			}
+			else {
+				request.setAttribute("errorMsg", "로그인 오류");
+			}
+		} catch (MessageException e) {
+			request.setAttribute("errorMsg", "로그인 오류");
+		}
+		
+		request.getRequestDispatcher(url).forward(request, response);
 	}
 	
 	public void signUp(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
