@@ -24,13 +24,13 @@ public class todoDTO {
 				+ todoEnd + ", userId=" + userId + "]";
 	}
 
-	public todoDTO(String todoContent, String todoStart, String todoEnd, int userId) {
+	public todoDTO(int todoId, String todoContent, String todoStart, String todoEnd, int userId) {
 		super();
+		this.todoId = todoId;
 		this.todoContent = todoContent;
 		this.todoStart = todoStart;
 		this.todoEnd = todoEnd;
 		this.userId = userId;
-	} 
-	
-	
+	}
+
 }

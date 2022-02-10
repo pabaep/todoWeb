@@ -28,8 +28,9 @@ public class userDTO {
 
 
 	//회원가입
-	public userDTO(String userEmail, String userName, String userPw) {
+	public userDTO(int userId, String userEmail, String userName, String userPw) {
 		super();
+		this.userId = userId;
 		this.userEmail = userEmail;
 		this.userName = userName;
 		this.userPw = userPw;
@@ -42,7 +43,7 @@ public class userDTO {
 		this.userEmail = userEmail;
 		this.userPw = userPw;
 	}
-	
+
 	
 }
 
