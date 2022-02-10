@@ -7,12 +7,10 @@ CREATE TABLE userT (
 ); */
 package model.DTO;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-public class userDTO {
+public class UserDTO {
 	private int userId;
 	private String userEmail;
 	private String userName;
@@ -28,9 +26,8 @@ public class userDTO {
 
 
 	//회원가입
-	public userDTO(int userId, String userEmail, String userName, String userPw) {
+	public UserDTO(String userEmail, String userName, String userPw) {
 		super();
-		this.userId = userId;
 		this.userEmail = userEmail;
 		this.userName = userName;
 		this.userPw = userPw;
@@ -38,7 +35,7 @@ public class userDTO {
 
 
 	//로그인
-	public userDTO(String userEmail, String userPw) {
+	public UserDTO(String userEmail, String userPw) {
 		super();
 		this.userEmail = userEmail;
 		this.userPw = userPw;

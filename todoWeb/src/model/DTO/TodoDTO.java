@@ -11,7 +11,7 @@ package model.DTO;
 import lombok.Data;
 
 @Data
-public class todoDTO {
+public class TodoDTO {
 	private int todoId;
 	private String todoContent;
 	private String todoStart;
@@ -24,9 +24,7 @@ public class todoDTO {
 				+ todoEnd + ", userId=" + userId + "]";
 	}
 
-	public todoDTO(int todoId, String todoContent, String todoStart, String todoEnd, int userId) {
-		super();
-		this.todoId = todoId;
+	public TodoDTO(String todoContent, String todoStart, String todoEnd, int userId) {
 		this.todoContent = todoContent;
 		this.todoStart = todoStart;
 		this.todoEnd = todoEnd;

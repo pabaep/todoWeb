@@ -57,7 +57,7 @@
                 <ul class="nav" id="main-menu">
 
                     <li>
-                        <a class="active-menu waves-effect waves-dark" href="index.html"><i class="fa fa-user"></i> Login</a>
+                        <a href="index.html"><i class="fa fa-user"></i> Login</a>
                     </li>
                     <li>
                         <a href="ui-elements.html" class="waves-effect waves-dark"><i class="fa fa-desktop"></i> UI Elements</a>
@@ -117,39 +117,41 @@
 		<div id="page-wrapper">
 		  <div class="header"> 
                         <h1 class="page-header">
-                            Login
+                            SignUp
                         </h1>
                         <div id="page-inner"> 
 			 <div class="row">
 			 <div class="col-lg-12">
 			 <div class="card">
                         <div class="card-action">
-                            Login for TodoWeb
+                            SignUp for TodoWeb
                         </div>
                         <div class="card-content">
     <form class="col s12" action="todoweb" method="post">
-     <input type="hidden" name="command" value="logIn">
+     <input type="hidden" name="command" value="signUp">
       <div class="row">
         <div class="input-field inline col s12">
-          <input id="user_email" type="email" class="validate">
+          <input id="user_email" name="user_email" type="email" class="validate">
           <label for="user_email" data-error="wrong" data-success="right">Email</label>
+        </div>
+      </div>
+            <div class="row">
+        <div class="input-field col s12">
+          <input id="user_name" name="user_name" type="text" class="validate">
+          <label for="user_name">NickName</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="password" type="password" class="validate">
+          <input id="password" name="user_pw" type="password" class="validate">
           <label for="password">Password</label>
         </div>
       </div>
       <div class="row">
         <div class="col s12">
          <div class="waves-effect waves-light btn">
-          <input type="submit" value="login">
+          <input type="submit" value="signup">
          </div>
-          <div style="float:right">
-         	if you don't have ant account 	&nbsp; 	&nbsp; 	&nbsp;
-			<a class="waves-effect waves-light btn" href="signup.html">signup</a>
-          </div>
         </div>
       </div>
     </form>
