@@ -41,6 +41,14 @@ public class UserDTO {
 		this.userPw = userPw;
 	}
 
+
+	public UserDTO(int userId, String userEmail, String userName) {
+		super();
+		this.userId = userId;
+		this.userEmail = userEmail;
+		this.userName = userName;
+	}
+
 	
 }
 
