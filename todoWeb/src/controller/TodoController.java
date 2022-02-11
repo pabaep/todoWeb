@@ -35,9 +35,11 @@ public class TodoController extends HttpServlet {
 			}
 			else if(command.equals("signUp")) {
 				signUp(request, response);
-			}else if(command.equals("todoAll")) {
+			}
+			else if(command.equals("todoAll")) {
 				todoAll(request,response);
-			}else if(command.equals("deleteTodo")) {
+			}
+			else if(command.equals("deleteTodo")) {
 				deleteTodo(request, response);
 			}
 		}catch(Exception s){
@@ -57,12 +59,13 @@ public class TodoController extends HttpServlet {
 			if(user != null) {
 				request.setAttribute("successMsg", "로그인 완료");
 				request.setAttribute("user", user);
-				url = "todo.jsp";
+				request.setAttribute("todoAll", TodoService.getAlltodo(user.getUserId()));
+				url = "todoAll.jsp";
 			}
 			else {
 				request.setAttribute("errorMsg", "로그인 오류");
 			}
-		} catch (MessageException e) {
+		} catch (Exception e) {
 			request.setAttribute("errorMsg", "로그인 오류");
 		}
 		
@@ -90,9 +93,11 @@ public class TodoController extends HttpServlet {
 	}
 	
 	public void todoAll(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String userId = request.getParameter("uid");
+		System.out.println(userId);
 		String url = "showError.jsp";
 		try {
-			request.setAttribute("todoAll", TodoService.getAlltodo());
+			request.setAttribute("todoAll", TodoService.getAlltodo(Integer.parseInt(userId)));
 			url = "todoAll.jsp";
 		}catch(Exception s){
 			request.setAttribute("errorMsg", s.getMessage());
@@ -103,11 +108,12 @@ public class TodoController extends HttpServlet {
 		
 	//todoList 삭제
 	public void deleteTodo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String userId = request.getParameter("uid");
 		String url = "todoAll.jsp";
 		try {
 			String todoId = request.getParameter("todoId");
 			if(TodoService.deleteTodo(todoId)){
-				request.setAttribute("todoAll", TodoService.getAlltodo());
+				request.setAttribute("todoAll", TodoService.getAlltodo(Integer.parseInt(userId)));
 				url = "todoAll.jsp";
 			}else{
 				request.setAttribute("errorMsg", "재 실행 해 주세요");

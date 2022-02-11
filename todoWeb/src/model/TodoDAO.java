@@ -48,14 +48,15 @@ public class TodoDAO {
 		return false;
 	}
 	
-	public static ArrayList<TodoDTO> getAlltodo() throws SQLException{
+	public static ArrayList<TodoDTO> getAlltodo(int userId) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<TodoDTO> list = null;
 		try{
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("select * from todoT");
+			pstmt = con.prepareStatement("select * from todoT where userId=?");
+			pstmt.setString(1, Integer.toString(userId));
 			rset = pstmt.executeQuery();
 			
 			list = new ArrayList<TodoDTO>();

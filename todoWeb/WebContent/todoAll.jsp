@@ -72,7 +72,7 @@
                     </li>
                     
                     <li>
-                        <a href="todoweb?command=todoAll" class="waves-effect waves-dark"><i class="fa fa-table"></i> 전체 할 일 목록</a>
+                        <a href="todoweb?command=todoAll&uid=${requestScope.user.userId}" class="waves-effect waves-dark"><i class="fa fa-table"></i> 전체 할 일 목록</a>
                     </li>
                     <li>
                         <a href="form.html" class="waves-effect waves-dark"><i class="fa fa-edit"></i> Forms </a>
@@ -129,7 +129,7 @@
 											<td>${dataAll.todoContent}
 											<td>${dataAll.todoEnd}
 											<td class = "center"><a href="#">수정</a></td>
-											<td class = "center"><a href="todoweb?command=deleteTodo&todoId=${dataAll.todoId}">삭제</a></td>
+											<td class = "center"><a href="todoweb?command=deleteTodo&todoId=${dataAll.todoId}&uid=${requestScope.user.userId}">삭제</a></td>
 									</c:forEach>
                                 </table>
                             </div>
