@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -84,12 +85,18 @@ public class TodoController extends HttpServlet {
 			boolean result = TodoService.addUser(user);
 			if(result) {
 				request.setAttribute("successMsg", "가입 완료");
-				url = "index.html";
+				PrintWriter out = response.getWriter();
+				 
+				out.println("<script>alert('Successfully Sign up'); location.href='index.html';</script>");
+				 
+				out.flush();
+				//url = "index.html";
 			}
 		} catch (MessageException e) {
 			request.setAttribute("errorMsg", "다시 시도하세요");
+			request.getRequestDispatcher(url).forward(request, response);
 		}
-		request.getRequestDispatcher(url).forward(request, response);
+		
 	}
 	
 	public void todoAll(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
