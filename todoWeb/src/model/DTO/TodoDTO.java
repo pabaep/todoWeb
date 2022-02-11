@@ -31,5 +31,10 @@ public class TodoDTO {
 		this.todoEnd = todoEnd;
 		this.userId = userId;
 	}
-
+	public TodoDTO(String todoContent, String todoStart, String todoEnd) {
+		super();
+		this.todoContent = todoContent;
+		this.todoStart = todoStart;
+		this.todoEnd = todoEnd;
+	}
 }

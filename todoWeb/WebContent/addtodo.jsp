@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" import="java.time.LocalDate, java.time.LocalTime"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<% String url = application.getContextPath() + "/"; %>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"> 
 <head>
     <meta charset="utf-8" />
@@ -36,10 +40,18 @@
 
             <ul class="nav navbar-top-links navbar-right"> 
 				
-				  <li><a class="dropdown-button waves-effect waves-dark" ><i class="fa fa-user fa-fw"></i> <b>로그인 하세요</b></a>
+				  <li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown1"><i class="fa fa-user fa-fw"></i> <b>${param.uid}</b> <i class="material-icons right">arrow_drop_down</i></a></li>
             </ul>
         </nav>
-
+		<!-- Dropdown Structure -->
+<ul id="dropdown1" class="dropdown-content">
+<li><a href="#"><i class="fa fa-user fa-fw"></i> My Profile</a>
+</li>
+<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+</li> 
+<li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+</li>
+</ul>
 
   
 
@@ -50,11 +62,12 @@
 
                     <li>
                         <a class="active-menu waves-effect waves-dark" href="index.html"><i class="fa fa-user"></i> Login</a>
-                    <li>
-                     <a class="waves-effect waves-dark" onclick="alert('로그인 하세요');"><i class="fa fa-table"></i> To do List</a>
                     </li>
                     <li>
-                        <a class="waves-effect waves-dark" onclick="alert('로그인 하세요');"><i class="fa fa-edit"></i> Add To do List </a>
+                        <a href="todoweb?command=todoAll&uid=${requestScope.user.userId}" class="waves-effect waves-dark"><i class="fa fa-table"></i> To do List</a>
+                    </li>
+                    <li>
+                        <a href="todoweb?command=addTodo&uid=${requestScope.user.userId}" class="waves-effect waves-dark"><i class="fa fa-edit"></i> Add To do List </a>
                     </li>
 
                 </ul>
@@ -67,39 +80,42 @@
 		<div id="page-wrapper">
 		  <div class="header"> 
                         <h1 class="page-header">
-                            Login
+                            Add To Do List
                         </h1>
                         <div id="page-inner"> 
 			 <div class="row">
 			 <div class="col-lg-12">
 			 <div class="card">
                         <div class="card-action">
-                            Login for TodoWeb
+                            Write To do
                         </div>
                         <div class="card-content">
     <form class="col s12" action="todoweb" method="post">
-     <input type="hidden" name="command" value="logIn">
+     <input type="hidden" name="command" value="addTodo">
+     <input type="hidden" name="userid" value="${param.uid}">     
       <div class="row">
         <div class="input-field inline col s12">
-          <input id="user_email" name="user_email" type="email" class="validate">
-          <label for="user_email" data-error="wrong" data-success="right">Email</label>
+          <input id="todoContent" name="todoContent" type="text" class="validate">
+          <label for="todoContent">Content</label>
+        </div>
+      </div>
+            <div class="row">
+        <div class="input-field col s12">
+ 			Start Time<br>
+          <input id="todoStart" name="todoStart" type="datetime-local" value="2022-02-11T12:00" class="validate">
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="password" name="user_pw" type="password" class="validate">
-          <label for="password">Password</label>
+        	End Time<br>
+          <input id="todoEnd" name="todoEnd" type="datetime-local" value="2022-02-11T12:00"  class="validate">
         </div>
       </div>
       <div class="row">
         <div class="col s12">
          <div class="waves-effect waves-light btn">
-          <input type="submit" value="login">
+          <input type="submit" value="Add">
          </div>
-          <div style="float:right">
-         	if you don't have any account 	&nbsp; 	&nbsp; 	&nbsp;
-			<a class="waves-effect waves-light btn" href="signup.html">signup</a>
-          </div>
         </div>
       </div>
     </form>

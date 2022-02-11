@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import exception.MessageException;
 import model.TodoService;
+import model.DTO.TodoDTO;
 import model.DTO.UserDTO;
 
 @WebServlet("/todoweb")
@@ -42,6 +43,8 @@ public class TodoController extends HttpServlet {
 			}
 			else if(command.equals("deleteTodo")) {
 				deleteTodo(request, response);
+			}else if(command.equals("addTodo")) {
+				addTodo(request, response);
 			}
 		}catch(Exception s){
 			request.setAttribute("errorMsg", s.getMessage());
@@ -130,5 +133,26 @@ public class TodoController extends HttpServlet {
 		}
 		request.getRequestDispatcher(url).forward(request, response);
 	}
-
+	
+	public void addTodo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String url = "showError.jsp";
+		String userId = request.getParameter("userid");
+		String todocontent = request.getParameter("todoContent");
+		String todoStart = request.getParameter("todoStart");
+		String todoEnd = request.getParameter("todoEnd");
+	
+		TodoDTO todo = new TodoDTO(todocontent, todoStart, todoEnd);
+		System.out.println(userId);
+		try {
+			boolean result = TodoService.addTodo(todo, Integer.parseInt(userId));
+			if(result) {
+				request.setAttribute("successMsg", "할일 추가 완료");
+				url = "addtodo.html";
+			}
+		} catch (MessageException e) {
+				request.setAttribute("errorMsg", "할일 추가 실패");
+			}
+		request.getRequestDispatcher(url).forward(request, response);
+	}
 }
+

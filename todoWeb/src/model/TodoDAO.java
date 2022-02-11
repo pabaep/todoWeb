@@ -68,5 +68,86 @@ public class TodoDAO {
 		}
 		return list;
 	}
+	public static boolean addTodo(TodoDTO todo, int userId) throws SQLException{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try{
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("insert into  todoT values(seq_todo_id.NEXTVAL, ?, ?, ?,?)");
+			pstmt.setString(1, todo.getTodoContent());
+			pstmt.setString(2, todo.getTodoStart());
+			pstmt.setString(3, todo.getTodoEnd());
+			pstmt.setString(4, Integer.toString(userId));
+			
+			int result = pstmt.executeUpdate();
+		
+			if(result == 1){
+				return true;
+			}
+		}finally{
+			DBUtil.close(con, pstmt);
+		}
+		return false;
+	}
 
+	public static boolean updateContent(String todocontent, int todoId, int userId) throws SQLException{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try{
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("update todoT set todoContent=? where todoId=? AND where userId = ?");
+			pstmt.setString(1, todocontent);
+			pstmt.setInt(2, todoId);
+			pstmt.setInt(3, userId);
+			
+			int result = pstmt.executeUpdate();
+			if(result == 1){
+				return true;
+			}
+		}finally{
+			DBUtil.close(con, pstmt);
+		}
+		return false;
+	}
+	
+	public static boolean updateTodoStart(String todoStart, int todoId, int userId) throws SQLException{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try{
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("update todoT set todoStart=? where todoId=? AND where userId = ?");
+			pstmt.setString(1, todoStart);
+			pstmt.setInt(2, todoId);
+			pstmt.setInt(3, userId);
+			
+			int result = pstmt.executeUpdate();
+			if(result == 1){
+				return true;
+			}
+		}finally{
+			DBUtil.close(con, pstmt);
+		}
+		return false;
+	}
+	
+	public static boolean updateTodoEnd(String todoEnd, int todoId, int userId) throws SQLException{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try{
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("update todoT set todoEnd=? where todoId=? AND where userId = ?");
+			pstmt.setString(1, todoEnd);
+			pstmt.setInt(2, todoId);
+			pstmt.setInt(3, userId);
+			
+			int result = pstmt.executeUpdate();
+			if(result == 1){
+				return true;
+			}
+		}finally{
+			DBUtil.close(con, pstmt);
+		}
+		return false;
+	}
 }
