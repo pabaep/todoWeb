@@ -22,13 +22,13 @@ public class TodoController extends HttpServlet {
 
 	protected void process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// ¿äÃ» Á¤º¸¿¡ ÇÑÇØ¼­ ÇÑ±ÛÀÎ °æ¿ì¿¡ ÀÎÄÚµù Ã³¸®ÇÏ´Â ¼³Á¤
+		// ìš”ì²­ ì •ë³´ì— í•œí•´ì„œ í•œê¸€ì¸ ê²½ìš°ì— ì¸ì½”ë”© ì²˜ë¦¬í•˜ëŠ” ì„¤ì •
 		request.setCharacterEncoding("utf-8");
 		// command pattern
 		String command = request.getParameter("command");
 		System.out.println(command);
 		
-		//?? ¿©±â¿¡ °¢ÀÚ ¾µ ¸Ş¼Òµå ³Ö¾î¼­ ¾²¼¼¿ä ~
+		//?? ì—¬ê¸°ì— ê°ì ì“¸ ë©”ì†Œë“œ ë„£ì–´ì„œ ì“°ì„¸ìš” ~
 		try{
 			if(command.equals("logIn")){
 				login(request, response);
@@ -55,15 +55,15 @@ public class TodoController extends HttpServlet {
 		try {
 			UserDTO user = TodoService.login(userEmail, userPw);
 			if(user != null) {
-				request.setAttribute("successMsg", "·Î±×ÀÎ ¿Ï·á");
+				request.setAttribute("successMsg", "ë¡œê·¸ì¸ ì™„ë£Œ");
 				request.setAttribute("user", user);
 				url = "todo.jsp";
 			}
 			else {
-				request.setAttribute("errorMsg", "·Î±×ÀÎ ¿À·ù");
+				request.setAttribute("errorMsg", "ë¡œê·¸ì¸ ì˜¤ë¥˜");
 			}
 		} catch (MessageException e) {
-			request.setAttribute("errorMsg", "·Î±×ÀÎ ¿À·ù");
+			request.setAttribute("errorMsg", "ë¡œê·¸ì¸ ì˜¤ë¥˜");
 		}
 		
 		request.getRequestDispatcher(url).forward(request, response);
@@ -80,11 +80,11 @@ public class TodoController extends HttpServlet {
 		try {
 			boolean result = TodoService.addUser(user);
 			if(result) {
-				request.setAttribute("successMsg", "°¡ÀÔ ¿Ï·á");
+				request.setAttribute("successMsg", "ê°€ì… ì™„ë£Œ");
 				url = "index.html";
 			}
 		} catch (MessageException e) {
-			request.setAttribute("errorMsg", "´Ù½Ã ½ÃµµÇÏ¼¼¿ä");
+			request.setAttribute("errorMsg", "ë‹¤ì‹œ ì‹œë„í•˜ì„¸ìš”");
 		}
 		request.getRequestDispatcher(url).forward(request, response);
 	}
@@ -101,7 +101,7 @@ public class TodoController extends HttpServlet {
 		request.getRequestDispatcher(url).forward(request, response);
 	}
 		
-	//todoList »èÁ¦
+	//todoList ì‚­ì œ
 	public void deleteTodo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "todoAll.jsp";
 		try {
@@ -110,10 +110,10 @@ public class TodoController extends HttpServlet {
 				request.setAttribute("todoAll", TodoService.getAlltodo());
 				url = "todoAll.jsp";
 			}else{
-				request.setAttribute("errorMsg", "Àç ½ÇÇà ÇØ ÁÖ¼¼¿ä");
+				request.setAttribute("errorMsg", "ì¬ ì‹¤í–‰ í•´ ì£¼ì„¸ìš”");
 			}
 		}catch(Exception s){
-			request.setAttribute("errorMsg", "todoList°¡ ÀÌ¹Ì Á¸ÀçÇÕ´Ï´Ù.");
+			request.setAttribute("errorMsg", "todoListê°€ ì´ë¯¸ ì¡´ì¬í•©ë‹ˆë‹¤.");
 		}
 		request.getRequestDispatcher(url).forward(request, response);
 	}
