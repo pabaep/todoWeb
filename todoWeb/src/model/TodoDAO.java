@@ -68,13 +68,14 @@ public class TodoDAO {
 		}
 		return list;
 	}
+	
 	public static boolean addTodo(TodoDTO todo, int userId) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
 		try{
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("insert into  todoT values(seq_todo_id.NEXTVAL, ?, ?, ?,?)");
+			pstmt = con.prepareStatement("insert into  todoT values(seq_todo_id.NEXTVAL, ?, to_date(?,'YYYY-MM-DD HH24:MI'), to_date(?,'YYYY-MM-DD HH24:MI'), ?)");
 			pstmt.setString(1, todo.getTodoContent());
 			pstmt.setString(2, todo.getTodoStart());
 			pstmt.setString(3, todo.getTodoEnd());

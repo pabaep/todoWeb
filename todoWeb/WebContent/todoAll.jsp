@@ -55,11 +55,11 @@
                 <ul class="nav" id="main-menu">
 
                     <li>
-                        <a class="waves-effect waves-dark" href="index.html"><i class="fa fa-user"></i> Login</a>
+                        <a class="waves-effect waves-dark" ><i class="fa fa-user"></i> Login</a>
                     </li>
 
                     <li>
-                        <a href="todoweb?command=todoAll&uid=${requestScope.user.userId}" class="active-menu waves-effect waves-dark"><i class="fa fa-table"></i> To do List</a>
+                        <a class="active-menu waves-effect waves-dark"><i class="fa fa-table"></i> To do List</a>
                     </li>
                     <li>
                         <a href="addtodo.jsp?uid=${requestScope.user.userId}&uname=${requestScope.user.userName}" class="waves-effect waves-dark"><i class="fa fa-edit"></i> Add To Do List </a>
@@ -98,15 +98,13 @@
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th>index</th><th>할 일</th><th>마감시간</th><th>수정</th><th>삭제</th>
+                                            <th>할 일</th><th>마감시간</th><th>삭제</th>
                                         </tr>
                                     </thead>
                                     <c:forEach items="${requestScope.todoAll}" var = "dataAll">
 										<tr>
-											<td>${dataAll.todoId}
 											<td>${dataAll.todoContent}
 											<td>${dataAll.todoEnd}
-											<td class = "center"><a href="#">수정</a></td>
 											<td class = "center"><a href="todoweb?command=deleteTodo&todoId=${dataAll.todoId}&uid=${requestScope.user.userId}">삭제</a></td>
 									</c:forEach>
                                 </table>
