@@ -66,7 +66,7 @@
                         <a href="todoweb?command=todoAll&uid=${requestScope.user.userId}" class="waves-effect waves-dark"><i class="fa fa-table"></i> To do List</a>
                     </li>
                     <li>
-                        <a href="addtodo.jsp?uid=${requestScope.user.userId}" class="waves-effect waves-dark"><i class="fa fa-edit"></i> Add To Do List </a>
+                        <a href="addtodo.jsp?uid=${requestScope.user.userId}&uname=${requestScope.user.userName}" class="waves-effect waves-dark"><i class="fa fa-edit"></i> Add To Do List </a>
                     </li>
                 </ul>
 
