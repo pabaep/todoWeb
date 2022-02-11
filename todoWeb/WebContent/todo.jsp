@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<% String url = application.getContextPath() + "/"; %>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"> 
 <head>
     <meta charset="utf-8" />
@@ -36,7 +39,7 @@
 
             <ul class="nav navbar-top-links navbar-right"> 
 				
-				  <li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown1"><i class="fa fa-user fa-fw"></i> <b>John Doe</b> <i class="material-icons right">arrow_drop_down</i></a></li>
+				  <li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown1"><i class="fa fa-user fa-fw"></i> <b>${requestScope.user.userName}</b> <i class="material-icons right">arrow_drop_down</i></a></li>
             </ul>
         </nav>
 		<!-- Dropdown Structure -->
@@ -57,13 +60,13 @@
                 <ul class="nav" id="main-menu">
 
                     <li>
-                        <a class="active-menu waves-effect waves-dark" href="index.html"><i class="fa fa-user"></i> Login</a>
+                        <a class="waves-effect waves-dark" href="index.html"><i class="fa fa-user"></i> Login</a>
                     </li>
                     <li>
                         <a href="ui-elements.html" class="waves-effect waves-dark"><i class="fa fa-desktop"></i> UI Elements</a>
                     </li>
 					<li>
-                        <a href="todo.jsp" class="waves-effect waves-dark"><i class="fa fa-bar-chart-o"></i> Charts</a>
+                        <a href="chart.html" class="active-menu waves-effect waves-darkk"><i class="fa fa-tasks"></i> Todo</a>
                     </li>
                     <li>
                         <a href="tab-panel.html" class="waves-effect waves-dark"><i class="fa fa-qrcode"></i> Tabs & Panels</a>
@@ -117,14 +120,14 @@
 		<div id="page-wrapper">
 		  <div class="header"> 
                         <h1 class="page-header">
-                            Login
+                            Today's TodoList
                         </h1>
                         <div id="page-inner"> 
 			 <div class="row">
 			 <div class="col-lg-12">
 			 <div class="card">
                         <div class="card-action">
-                            Login for TodoWeb
+                            Check to mark the completion of what you have to do
                         </div>
                         <div class="card-content">
     <form class="col s12" action="todoweb" method="post">

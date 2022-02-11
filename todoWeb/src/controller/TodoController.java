@@ -51,9 +51,9 @@ public class TodoController extends HttpServlet {
 		try {
 			UserDTO user = TodoService.login(userEmail, userPw);
 			if(user != null) {
-				request.setAttribute("successMsg", "가입 완료");
+				request.setAttribute("successMsg", "로그인 완료");
 				request.setAttribute("user", user);
-				url = "form.html";
+				url = "todo.jsp";
 			}
 			else {
 				request.setAttribute("errorMsg", "로그인 오류");
