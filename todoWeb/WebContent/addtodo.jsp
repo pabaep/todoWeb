@@ -40,7 +40,7 @@
 
             <ul class="nav navbar-top-links navbar-right"> 
 				
-				  <li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown1"><i class="fa fa-user fa-fw"></i> <b>${param.uid}</b> <i class="material-icons right">arrow_drop_down</i></a></li>
+				  <li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown1"><i class="fa fa-user fa-fw"></i> <b>${param.uname}</b> <i class="material-icons right">arrow_drop_down</i></a></li>
             </ul>
         </nav>
 		<!-- Dropdown Structure -->
@@ -61,13 +61,13 @@
                 <ul class="nav" id="main-menu">
 
                     <li>
-                        <a class="active-menu waves-effect waves-dark" href="index.html"><i class="fa fa-user"></i> Login</a>
+                        <a class="waves-effect waves-dark" href="index.html"><i class="fa fa-user"></i> Login</a>
                     </li>
                     <li>
                         <a href="todoweb?command=todoAll&uid=${requestScope.user.userId}" class="waves-effect waves-dark"><i class="fa fa-table"></i> To do List</a>
                     </li>
                     <li>
-                        <a href="todoweb?command=addTodo&uid=${requestScope.user.userId}" class="waves-effect waves-dark"><i class="fa fa-edit"></i> Add To do List </a>
+                        <a href="todoweb?command=addTodo&uid=${requestScope.user.userId}" class="active-menu waves-effect waves-dark"><i class="fa fa-edit"></i> Add To do List </a>
                     </li>
 
                 </ul>
