@@ -53,4 +53,14 @@ public class TodoService {
 		}
 		return result;
 	}
+	public static boolean addTodo(TodoDTO todo, int userId) throws MessageException{
+		boolean result = false;
+		try {
+			result = TodoDAO.addTodo(todo, userId);
+			
+		} catch (SQLException e) {
+			throw new MessageException("올바르게 입력하지 않았습니다.");
+		}
+		return result;
+	}
 }

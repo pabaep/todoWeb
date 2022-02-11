@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
     
 <% String url = application.getContextPath() + "/"; %>
     
@@ -18,7 +17,6 @@
 			
 		<br><br><br>
 		<a href="${pageContext.request.contextPath}/index.html">메인 화면으로 이동하기</a>
-	</center>
-	
+		</center>
 </body>
 </html>

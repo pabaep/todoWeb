@@ -2,14 +2,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <% String url = application.getContextPath() + "/"; %>
-
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"> 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>전체 할 일 목록 화면(todoAll)</title>
-	
+    <title>Target Material Design Bootstrap Admin Template</title> 
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="assets/materialize/css/materialize.min.css" media="screen,projection" />
     <!-- Bootstrap Styles-->
@@ -24,11 +22,12 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
     <link rel="stylesheet" href="assets/js/Lightweight-Chart/cssCharts.css"> 
 </head>
+
 <body>
     <div id="wrapper">
         <nav class="navbar navbar-default top-navbar" role="navigation">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                <button type="button" class="navbar-toggle waves-effect waves-dark" data-toggle="collapse" data-target=".sidebar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -40,7 +39,8 @@
             </div>
 
             <ul class="nav navbar-top-links navbar-right"> 
-				  <li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown1"><i class="fa fa-user fa-fw"></i> <b>${requestScope.user.userName}</b> <i class="material-icons right">arrow_drop_down</i></a></li>
+				
+				  <li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown1"><i class="fa fa-user fa-fw"></i> <b>${param.uid}</b> <i class="material-icons right">arrow_drop_down</i></a></li>
             </ul>
         </nav>
 		<!-- Dropdown Structure -->
@@ -52,8 +52,10 @@
 <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
 </li>
 </ul>
+
+  
+
 	   <!--/. NAV TOP  -->
-        <!--/. NAV TOP  -->
         <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
@@ -61,74 +63,75 @@
                     <li>
                         <a class="active-menu waves-effect waves-dark" href="index.html"><i class="fa fa-user"></i> Login</a>
                     </li>
-
                     <li>
                         <a href="todoweb?command=todoAll&uid=${requestScope.user.userId}" class="waves-effect waves-dark"><i class="fa fa-table"></i> To do List</a>
                     </li>
                     <li>
-                        <a href="addtodo.jsp?uid=${requestScope.user.userId}" class="waves-effect waves-dark"><i class="fa fa-edit"></i> Add To Do List </a>
+                        <a href="todoweb?command=addTodo&uid=${requestScope.user.userId}" class="waves-effect waves-dark"><i class="fa fa-edit"></i> Add To do List </a>
                     </li>
+
                 </ul>
 
             </div>
 
         </nav>
         <!-- /. NAV SIDE  -->
-        <div id="page-wrapper" >
+      
+		<div id="page-wrapper">
 		  <div class="header"> 
                         <h1 class="page-header">
-                            To do List
+                            Add To Do List
                         </h1>
-
-									
-		</div>
-		
-            <div id="page-inner"> 
-               
-            <div class="row">
-                <div class="col-md-12">
-                    <!-- Advanced Tables -->
-                    <div class="card">
+                        <div id="page-inner"> 
+			 <div class="row">
+			 <div class="col-lg-12">
+			 <div class="card">
                         <div class="card-action">
-                             <h5>할 일을 완료했으면 삭제버튼을 눌러주세요.</h5> <br><br>
-                             <h3>
-                             <% LocalDate today = LocalDate.now(); 
-                             	out.println(today);
-                             %>
-                             </h3>
+                            Write To do
                         </div>
                         <div class="card-content">
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                    <thead>
-                                        <tr>
-                                            <th>index</th><th>할 일</th><th>마감시간</th><th>수정</th><th>삭제</th>
-                                        </tr>
-                                    </thead>
-                                    <c:forEach items="${requestScope.todoAll}" var = "dataAll">
-										<tr>
-											<td>${dataAll.todoId}
-											<td>${dataAll.todoContent}
-											<td>${dataAll.todoEnd}
-											<td class = "center"><a href="#">수정</a></td>
-											<td class = "center"><a href="todoweb?command=deleteTodo&todoId=${dataAll.todoId}&uid=${requestScope.user.userId}">삭제</a></td>
-									</c:forEach>
-                                </table>
-                            </div>
-                            
-                        </div>
-                    </div>
-                    <!--End Advanced Tables -->
-                </div>
-            </div>
+    <form class="col s12" action="todoweb" method="post">
+     <input type="hidden" name="command" value="addTodo">
+     <input type="hidden" name="userid" value="${param.uid}">     
+      <div class="row">
+        <div class="input-field inline col s12">
+          <input id="todoContent" name="todoContent" type="text" class="validate">
+          <label for="todoContent">Content</label>
+        </div>
+      </div>
+            <div class="row">
+        <div class="input-field col s12">
+ 			Start Time<br>
+          <input id="todoStart" name="todoStart" type="datetime-local" value="2022-02-11T12:00" class="validate">
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+        	End Time<br>
+          <input id="todoEnd" name="todoEnd" type="datetime-local" value="2022-02-11T12:00"  class="validate">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12">
+         <div class="waves-effect waves-light btn">
+          <input type="submit" value="Add">
+         </div>
+        </div>
+      </div>
+    </form>
+	<div class="clearBoth"></div>
+  </div>
     </div>
-             <!-- /. PAGE INNER  -->
-            </div>
-         <!-- /. PAGE WRAPPER  -->
-     <!-- /. WRAPPER  -->
+ </div>	
+ </div>
+									
+		 </div>
+            
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
     <!-- JS Scripts-->
- 
-
     <!-- jQuery Js -->
     <script src="assets/js/jquery-1.10.2.js"></script>
 	
@@ -148,17 +151,11 @@
 	<script src="assets/js/easypiechart-data.js"></script>
 	
 	 <script src="assets/js/Lightweight-Chart/jquery.chart.js"></script>
-	 <!-- DATA TABLE SCRIPTS -->
-    <script src="assets/js/dataTables/jquery.dataTables.js"></script>
-    <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
-        <script>
-            $(document).ready(function () {
-                $('#dataTables-example').dataTable();
-            });
-    </script>
+	
     <!-- Custom Js -->
     <script src="assets/js/custom-scripts.js"></script> 
  
 
 </body>
+
 </html>
