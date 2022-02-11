@@ -39,8 +39,8 @@ public class TodoService {
 		}
 	}
 	
-	public static ArrayList<TodoDTO> getAlltodo() throws SQLException{
-		return TodoDAO.getAlltodo();
+	public static ArrayList<TodoDTO> getAlltodo(int userId) throws SQLException{
+		return TodoDAO.getAlltodo(userId);
 	}
 	
 		
