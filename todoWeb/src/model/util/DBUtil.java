@@ -28,7 +28,7 @@ public class DBUtil {
 		return ds.getConnection();
 	}
 	
-	//CP ±â´ÉÀÇ close()´Â CP¸Ş¸ğ¸®¿¡ ¹İÈ¯!!
+	//CP ê¸°ëŠ¥ì˜ close()ëŠ” CPë©”ëª¨ë¦¬ì— ë°˜í™˜!!
 	public static void close(Connection con, Statement stmt, ResultSet rset) {
 		try {
 			if(rset != null) {

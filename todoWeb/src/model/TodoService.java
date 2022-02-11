@@ -16,7 +16,7 @@ public class TodoService {
 			result = UserDAO.addUser(user);
 			
 		} catch (SQLException e) {
-			throw new MessageException("¿Ã¹Ù¸£°Ô ÀÔ·ÂÇÏÁö ¾Ê¾Ò½À´Ï´Ù.");
+			throw new MessageException("ì˜¬ë°”ë¥´ê²Œ ì…ë ¥í•˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
 		}
 		return result;
 	}
@@ -26,7 +26,7 @@ public class TodoService {
 		try {
 			result = UserDAO.login(userEmail, userPw);
 		} catch (SQLException e) {
-			throw new MessageException("ÀÌ¸ŞÀÏ È¤Àº ºñ¹Ğ¹øÈ£°¡ Àß¸ø ÀÔ·ÂµÇ¾ú½À´Ï´Ù.");
+			throw new MessageException("ì´ë©”ì¼ í˜¹ì€ ë¹„ë°€ë²ˆí˜¸ê°€ ì˜ëª» ì…ë ¥ë˜ì—ˆìŠµë‹ˆë‹¤.");
 		}
 		
 		return result;
@@ -35,7 +35,7 @@ public class TodoService {
 	public static void notExistTodo(String todoId) throws NotExistException, SQLException{
 		TodoDTO todo = TodoDAO.getTodo(todoId);
 		if(todo == null){
-			throw new NotExistException("Àß¸øµÈ todoId ÀÔ´Ï´Ù.");
+			throw new NotExistException("ì˜ëª»ëœ todoId ì…ë‹ˆë‹¤.");
 		}
 	}
 	
@@ -49,7 +49,7 @@ public class TodoService {
 		notExistTodo(todoId);
 		boolean result = TodoDAO.deleteTodo(todoId);
 		if(!result){
-			throw new NotExistException("ÇÒ ÀÏ »èÁ¦ ½ÇÆĞ");
+			throw new NotExistException("í•  ì¼ ì‚­ì œ ì‹¤íŒ¨");
 		}
 		return result;
 	}

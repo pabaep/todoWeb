@@ -25,7 +25,7 @@ public class UserDTO {
 	}
 
 
-	//È¸¿ø°¡ÀÔ
+	//íšŒì›ê°€ì…
 	public UserDTO(String userEmail, String userName, String userPw) {
 		super();
 		this.userEmail = userEmail;
@@ -34,7 +34,7 @@ public class UserDTO {
 	}
 
 
-	//·Î±×ÀÎ
+	//ë¡œê·¸ì¸
 	public UserDTO(String userEmail, String userPw) {
 		super();
 		this.userEmail = userEmail;
