@@ -141,15 +141,15 @@ public class TodoController extends HttpServlet {
 		String todoStart = request.getParameter("todoStart");
 		String todoEnd = request.getParameter("todoEnd");
 	
-		TodoDTO todo = new TodoDTO(todocontent, todoStart, todoEnd);
-		System.out.println(userId);
+		TodoDTO todo = new TodoDTO(todocontent, todoStart.replace('T', ' '), todoEnd.replace('T', ' '));
+		
 		try {
 			boolean result = TodoService.addTodo(todo, Integer.parseInt(userId));
 			if(result) {
-				request.setAttribute("successMsg", "할일 추가 완료");
-				url = "addtodo.html";
+				request.setAttribute("todoAll", TodoService.getAlltodo(Integer.parseInt(userId)));
+				url = "todoAll.jsp";
 			}
-		} catch (MessageException e) {
+		} catch (Exception e) {
 				request.setAttribute("errorMsg", "할일 추가 실패");
 			}
 		request.getRequestDispatcher(url).forward(request, response);

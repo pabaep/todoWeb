@@ -58,13 +58,13 @@
                 <ul class="nav" id="main-menu">
 
                     <li>
-                        <a class="waves-effect waves-dark" href="index.html"><i class="fa fa-user"></i> Login</a>
+                        <a class="waves-effect waves-dark" ><i class="fa fa-user"></i> Login</a>
                     </li>
                     <li>
                         <a href="todoweb?command=todoAll&uid=${requestScope.user.userId}" class="waves-effect waves-dark"><i class="fa fa-table"></i> To do List</a>
                     </li>
                     <li>
-                        <a href="todoweb?command=addTodo&uid=${requestScope.user.userId}" class="active-menu waves-effect waves-dark"><i class="fa fa-edit"></i> Add To do List </a>
+                        <a class="active-menu waves-effect waves-dark"><i class="fa fa-edit"></i> Add To do List </a>
                     </li>
 
                 </ul>
