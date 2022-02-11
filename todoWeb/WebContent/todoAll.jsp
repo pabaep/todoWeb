@@ -61,24 +61,12 @@
                     <li>
                         <a class="active-menu waves-effect waves-dark" href="index.html"><i class="fa fa-user"></i> Login</a>
                     </li>
+
                     <li>
-                        <a href="ui-elements.html" class="waves-effect waves-dark"><i class="fa fa-desktop"></i> UI Elements</a>
-                    </li>
-					<li>
-                        <a href="chart.html" class="waves-effect waves-dark"><i class="fa fa-bar-chart-o"></i> Charts</a>
-                    </li>
-                    <li>
-                        <a href="tab-panel.html" class="waves-effect waves-dark"><i class="fa fa-qrcode"></i> Tabs & Panels</a>
-                    </li>
-                    
-                    <li>
-                        <a href="todoweb?command=todoAll&uid=${requestScope.user.userId}" class="waves-effect waves-dark"><i class="fa fa-table"></i> 전체 할 일 목록</a>
+                        <a href="todoweb?command=todoAll&uid=${requestScope.user.userId}" class="waves-effect waves-dark"><i class="fa fa-table"></i> To do List</a>
                     </li>
                     <li>
                         <a href="form.html" class="waves-effect waves-dark"><i class="fa fa-edit"></i> Forms </a>
-                    </li>
-                    <li>
-                        <a href="empty.html" class="waves-effect waves-dark"><i class="fa fa-fw fa-file"></i> Empty Page</a>
                     </li>
                 </ul>
 
@@ -91,9 +79,7 @@
                         <h1 class="page-header">
                             To do List
                         </h1>
-						<ol class="breadcrumb">
-					  <li><a href="todo.jsp">메인으로 돌아가기</a></li>
-					</ol> 
+
 									
 		</div>
 		
@@ -104,14 +90,10 @@
                     <!-- Advanced Tables -->
                     <div class="card">
                         <div class="card-action">
-                             <h3>오늘 해야할 일</h3> <br><br>
+                             <h5>할 일을 완료했으면 삭제버튼을 눌러주세요.</h5> <br><br>
                              <h3>
                              <% LocalDate today = LocalDate.now(); 
-                             	LocalTime time = LocalTime.now();
-                             	int hour = time.getHour();
-                             	int minute = time.getMinute();
                              	out.println(today);
-                             	out.println(hour+ ":" + minute);
                              %>
                              </h3>
                         </div>
