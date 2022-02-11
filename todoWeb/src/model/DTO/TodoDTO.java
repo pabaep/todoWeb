@@ -24,7 +24,8 @@ public class TodoDTO {
 				+ todoEnd + ", userId=" + userId + "]";
 	}
 
-	public TodoDTO(String todoContent, String todoStart, String todoEnd, int userId) {
+	public TodoDTO(int todoId, String todoContent, String todoStart, String todoEnd, int userId) {
+		this.todoId = todoId;
 		this.todoContent = todoContent;
 		this.todoStart = todoStart;
 		this.todoEnd = todoEnd;

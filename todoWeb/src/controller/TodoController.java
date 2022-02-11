@@ -35,6 +35,10 @@ public class TodoController extends HttpServlet {
 			}
 			else if(command.equals("signUp")) {
 				signUp(request, response);
+			}else if(command.equals("todoAll")) {
+				todoAll(request,response);
+			}else if(command.equals("deleteTodo")) {
+				deleteTodo(request, response);
 			}
 		}catch(Exception s){
 			request.setAttribute("errorMsg", s.getMessage());
@@ -81,6 +85,35 @@ public class TodoController extends HttpServlet {
 			}
 		} catch (MessageException e) {
 			request.setAttribute("errorMsg", "다시 시도하세요");
+		}
+		request.getRequestDispatcher(url).forward(request, response);
+	}
+	
+	public void todoAll(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String url = "showError.jsp";
+		try {
+			request.setAttribute("todoAll", TodoService.getAlltodo());
+			url = "todoAll.jsp";
+		}catch(Exception s){
+			request.setAttribute("errorMsg", s.getMessage());
+			s.printStackTrace();
+		}
+		request.getRequestDispatcher(url).forward(request, response);
+	}
+		
+	//todoList 삭제
+	public void deleteTodo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String url = "todoAll.jsp";
+		try {
+			String todoId = request.getParameter("todoId");
+			if(TodoService.deleteTodo(todoId)){
+				request.setAttribute("todoAll", TodoService.getAlltodo());
+				url = "todoAll.jsp";
+			}else{
+				request.setAttribute("errorMsg", "재 실행 해 주세요");
+			}
+		}catch(Exception s){
+			request.setAttribute("errorMsg", "todoList가 이미 존재합니다.");
 		}
 		request.getRequestDispatcher(url).forward(request, response);
 	}
